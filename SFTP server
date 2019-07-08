@@ -1,26 +1,32 @@
 SFTP server
 
-Configure SSH Daemon If you have not done so yet, install SSH server:
+Configure SSH Daemon
+If you have not done so yet, install SSH server:
 
 $ sudo apt install ssh
 
-Next, In order to configure FTP over OpenSSH server use your favorite text editor to edit existing SSHD 
-configuration file /etc/ssh/sshd_config:
+Next, In order to configure FTP over OpenSSH server use your favorite text editor to edit existing SSHD configuration file /etc/ssh/sshd_config:
 
 $ sudo nano /etc/ssh/sshd_config
 
 and append the following to the end of the file:
 
-Match group sftp ChrootDirectory /home X11Forwarding no AllowTcpForwarding no ForceCommand internal-sftp
+Match group sftp
+ChrootDirectory /home
+X11Forwarding no
+AllowTcpForwarding no
+ForceCommand internal-sftp
 
 Restart SSH server to apply new changes:
 
 $ sudo service ssh restart
 
-Create SFTP user account We are almost done. All that remains is to create a new user account specific to SFTP service. 
-Let's start by creating a new group called sftp:
+Create SFTP user account
+We are almost done. All that remains is to create a new user account specific to SFTP service. Let's start by creating a new group called sftp:
 
-$ sudo addgroup sftp Adding group `sftp' (GID 1001) ... Done.
+$ sudo addgroup sftp
+Adding group `sftp' (GID 1001) ...
+Done.
 
 Next, create a new user eg. sftpuser and assign him to the previously created sftp group:
 
@@ -28,24 +34,38 @@ $ sudo useradd -m sftpuser -g sftp
 
 Set a new password for the sftpuser user:
 
-$ sudo passwd sftpuser Enter new UNIX password: Retype new UNIX password: passwd: password updated successfully
+$ sudo passwd sftpuser 
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
 
 Lastly, change access permissions to the user's home directly to deny access to it to any other users on the same system:
 
+ 
 $ sudo chmod 700 /home/sftpuser/
 
-All done. User login via SFTP Our new user with username sftpuser is now ready to login to our new S
-FTP server via sftp:// protocol. Given that your new SFTP server can be resolved via eg. 
-hostname ubuntu-sftp use sftp command to create a new SFTP connection:
+All done.
+User login via SFTP
+Our new user with username sftpuser is now ready to login to our new SFTP server via sftp:// protocol. 
+Given that your new SFTP server can be resolved via eg. hostname ubuntu-sftp use sftp command to create a new SFTP connection:
 
-$ sftp sftpuser@ubuntu-sftp The authenticity of host 'ubuntu-sftp (10.1.1.4)' can't be established. 
-ECDSA key fingerprint is SHA256:8SSv/iz6OGaF8m0TLcJNtRSitfTm59dOVa57WnRfUx8. Are you sure you want to 
-continue connecting (yes/no)? yes Warning: Permanently added 'ubuntu-sftp' (ECDSA) to the list of known hosts. sftpuser@ubuntu-sftp's password: Connected to ubuntu-sftp. sftp>
+$ sftp sftpuser@ubuntu-sftp
+The authenticity of host 'ubuntu-sftp (10.1.1.4)' can't be established.
+ECDSA key fingerprint is SHA256:8SSv/iz6OGaF8m0TLcJNtRSitfTm59dOVa57WnRfUx8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ubuntu-sftp' (ECDSA) to the list of known hosts.
+sftpuser@ubuntu-sftp's password: 
+Connected to ubuntu-sftp.
+sftp> 
 
 Navigate to your home directory and confirm write access by creating a new directory:
 
-sftp> cd sftpuser sftp> mkdir sftp-test sftp> ls examples.desktop sftp-test
-sftp>
+sftp> cd sftpuser
+sftp> mkdir sftp-test
+sftp> ls
+examples.desktop   sftp-test          
+sftp> 
 
 Another alternative is to make a SFTP connection using any GUI FTP client. 
-The simplest could be to use a Nautilus file manager which should be already installed on your system:
+The simplest could be to use a Nautilus file manager which should be already installed on your system: 
+
