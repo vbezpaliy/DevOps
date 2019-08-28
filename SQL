@@ -1,0 +1,6 @@
+https://habr.com/ru/post/461567/
+
+Restricting and Sorting Data
+Using Single-Row Functions to Customize Output
+Using Conversion Functions and Conditional Expressions
+Reporting Aggregated Data Using the Group Functions
