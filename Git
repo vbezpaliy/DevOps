@@ -1,4 +1,9 @@
 https://proglib.io/p/git-for-half-an-hour/
+https://ru.hexlet.io/courses/cli-basics
+https://learngitbranching.js.org/
+https://githowto.com/uk
+https://ru.hexlet.io/courses/intro_to_git (edited)
+https://git-scm.com/book/ru/v1/Введение-О-контроле-версий
 
 В первую очередь необходимо поставить Git:
 pkg_add -r git
