@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hello World</title>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+  $("document").ready(function(){
+    $(".outerbox").css({"height": ($(window).height() - 20) + "px"});
+  });
+  </script>
+  <link rel="icon" type="image/x-icon" href="/favicon32.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon32.ico">
+  <link href='//fonts.googleapis.com/css?family=Roboto:300|Inconsolata' rel='stylesheet' type='text/css'>
+  <style>
+  * {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url(blue-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  .box {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 {
+    font-size: 38px;
+    font-family: Inconsolata, Menlo, monospace;
+    font-weight: 400;
+  }
+  h1, p {
+    text-align: center;
+    line-height:  1.8em;
+  }
+  a {
+    color: #fff;
+  }
+  </style>
+</head>
+<body>
+  <div class="outerbox">
+    <div class="box">
+
+      <h1>Hello World</h1>
+
+      <p>Congratulations! You have just deployed and started a little something on your Giant Swarm Kubernetes cluster.</p>
+
+      <p>How about installing some more useful tools? We provide some <a href="https://docs.giantswarm.io/guides/">guides</a> to get you started quickly with the Dashboard, monitoring, metrics, logging, and more.</p>
+
+      <p><a href="https://giantswarm.io/"><img src="giant-swarm-logo.svg" width="280" height="50" /></a></p>
+
+    </div>
+  </div>
+</body>
+</html>
