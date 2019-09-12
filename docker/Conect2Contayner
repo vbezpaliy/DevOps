@@ -1,0 +1,8 @@
+docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=12345 -d mariadb
+
+docker run --link mysqlserver:db -p 8080:8080 adminer
+
+--link - флаг для обеденения двох контейнеров
+должне быть обозначен запись db для тго чтобы указывать запись ip в контейнере adminer /etc/hosts  ip-mysqlserver:db на контейнер 
+mysqlserver - назва контейнера где развернута база 
+adminer - имедж какой брать с репи докерхаба
