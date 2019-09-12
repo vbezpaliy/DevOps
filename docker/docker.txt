@@ -1,1 +1,48 @@
+Install Docker CE
+
+по мануалу
+
++ устанавливаем docker-compose
+
+добавить пользователя в групу
+
+sudo usermod -aG docker haker
+
+restart docker!
+
+sudo servise docker restart
+
 newgrp docker
+*********************************
+
+docker run -it ubuntu bash
+-it - интерактивный сеанс подключения на терминале
+
+docker -h haker -it ubuntu bash
+задаем имя хоста -h 
+
+получить больше информации о контейнере 
+docker inspect names*
+
+Задать имя контейнера 
+docker run --name Ubuntuname -it ubuntu bash
+
+Чтобы увидеть список измененных файлов
+docker diff UbuntuName 
+
+Команда для вывода логов в контейнере
+docker logs UbuntuName
+
+Чтобы удалить все остановленые контейнеры 
+docker ps -aq -f status=exited
+подставляем
+docker rm -v $(docker ps -aq -f status=exited)
+
+-d запустить контейнер в фонновом режиме
+
+Пробросить порты 
+-p 80:80 порт локальной машины : порт контейнера 
+
+
+
+
