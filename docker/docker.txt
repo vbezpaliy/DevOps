@@ -43,6 +43,8 @@ docker rm -v $(docker ps -aq -f status=exited)
 Пробросить порты 
 -p 80:80 порт локальной машины : порт контейнера 
 
+удалить все образы
+docker rmi $(docker images -q) --force
 
 
 
