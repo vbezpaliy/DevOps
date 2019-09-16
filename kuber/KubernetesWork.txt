@@ -1,0 +1,37 @@
+http://dotsandbrackets.com/what-kubernetes-ru/
+
+minikube start
+
+мастер-сервисы (masters) и работяги-ноды (nodes).
+
+kubectl get nodes - получить информацию о нодах
+
+$ kubectl get pod
+
+$ kubectl get pod --all-namespaces
+
+собственный дашборд
+minikube dashboard
+
+kubectl run не разрешит вот просто взять и запустить под. Он создаст deployment, который сам разберётся с запуском. 
+Разберётся и будет следить, чтобы потом с подом не произошло чего. Если тот упадёт, то деплоймент тут же создаст новый.
+
+kubectl run nginx --image=nginx 
+
+kubectl get deployment
+
+$ kubectl get pod
+#NAME                    READY     STATUS    RESTARTS   AGE
+#nginx-158599303-hq212   1/1       Running   0          1m
+
+Посмотреть логи
+kubectl logs nginx-158599303-hq212
+
+Залезть в нутирь
+kubectl exec -ti nginx-158599303-hq212 bash
+
+kubectl describe service/nginx
+kubectl describe node/minikube | grep InternalIP
+
+Убираем кластер назад
+minikube delete
