@@ -1,0 +1,7 @@
+
+    Установить Docker.
+    Зарегистрироваться на сайте Docker Hub.
+    Войти в учётную запись, выполнив в терминале команду следующего вида:
+
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
