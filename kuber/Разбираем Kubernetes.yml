@@ -1,0 +1,140 @@
+https://dotsandbrackets.com/kubernetes-example-ru/
+
+pod.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: single-nginx-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
+Create pod
+
+kubectl apply -f pod.yml 
+#pod "single-nginx-pod" created
+ 
+kubectl get pods
+#NAME               READY     STATUS              RESTARTS   AGE
+#single-nginx-pod   0/1       ContainerCreating   0          6s
+ 
+#few seconds later
+kubectl get pods
+#NAME               READY     STATUS    RESTARTS   AGE
+#single-nginx-pod   1/1       Running   0          2m
+
+
+Контроллеры — это такие Kubernetes объекты, которые могут манипулировать pod’ами. Например, 
+есть Cron Job контроллер, который умеет запускать их по расписанию. Или ещё есть Replica Set, 
+который может их масштабировать. Но самый универсальный контроллер — это Deployment. Он и воскресить может, 
+и отмасштабировать, и апдэйт накатить, если попросят.
+
+deployment.yml
+
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        
+- replicas , разумеется, задаёт, сколько копий pod’а нужно держать живыми.
+- selector, в свою очередь, как отличать свои pod’ы от чужих. В нашем случае если на pod’е есть метка 
+app: webserver, то клиент — наш.
+- template — он же шаблон — описывает, каким образом создавать pod, если тот скоропостижно скончался, 
+либо вообще ещё никогда не существовал.
+
+kubectl create -f deployment.yml 
+
+kubectl get deployment
+#NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+#nginx-deployment   1         1         1            1           2m
+ 
+kubectl get pods
+#NAME                                READY     STATUS    RESTARTS   AGE
+#nginx-deployment-5d789c98df-xchkz   1/1       Running   0          2m
+#single-nginx-pod                    1/1       Running   0  
+
+Поддерживаем заявленную конфигурацию
+kubectl delete pod nginx-deployment-5d789c98df-xchkz
+# pod "nginx-deployment-5d789c98df-xchkz" deleted
+
+должен рестартовать деплоймент
+kubectl get pods
+
+Масштабирование
+kubectl scale deployment nginx-deployment --replicas=10
+#deployment "nginx-deployment" scaled
+
+kubectl get pods
+#NAME                                READY     STATUS              RESTARTS   AGE
+#nginx-deployment-5d789c98df-8nn74   1/1       Running             0          8s
+#8 more pods
+#nginx-deployment-5d789c98df-rckfm   1/1       Running             0          4m
+#single-nginx-pod                    1/1       Running   
+
+
+Сервисы
+
+service.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: webserver
+  ports:
+    - port: 80
+      targetPort: 80
+
+kubectl get service
+#NAME            TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+#kubernetes      ClusterIP   10.0.0.1     <none>        443/TCP   4d
+#nginx-service   ClusterIP   10.0.0.218   <none>        80/TCP 
+
+Бесплатный DNS и балансировщик нагрузки
+
+
+Ingress
+
+Ингресс — это могущественный чёрный ящик, который может маршрутизировать запросы из внешнего мира к 
+конкретным сервисам внутри кластера.
+
+minikube addons enable ingress
+
+ingress.yml
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+    
+
+minikube ip
+
+получаем внешний IP + оно будет распределять между всеми подами
+
+
+
+
+
+
