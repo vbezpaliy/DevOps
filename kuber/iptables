@@ -1,0 +1,2 @@
+kubectl -n kube-system exec -ti kube-proxy-5ctt2 -- iptables --table nat --list
+
