@@ -1,0 +1,46 @@
+https://habr.com/ru/company/ruvds/blog/438984/
+
+Создание пода SA-Frontend
+kubectl create -f sa-frontend-pod.yaml
+
+kubectl get pods
+
+Пробросить порт в ручную kubectl port-forward sa-frontend 88:80
+
+В случае добавления конфига то задаем команду так
+kubectl apply -f sa-frontend-pod.yaml
+
+Фильтруем по меткам
+kubectl get pod -l app=sa-frontend
+
+Проверить состояние сервиса можно так:
+kubectl get svc
+
+для локальной отладки системы:доступ к нашему приложению
+minikube service sa-frontend-lb
+
+Удалить ненужные поды 
+kubectl delete pod <pod-name>
+
+kubectl apply -f sa-frontend-deployment-green.yaml --record
+
+--record - дает возможность откотить назад деплой
+
+Проверим состояние системы следующей командой:
+kubectl rollout status deployment sa-frontend
+
+------------------------------------------------------
+Откат к предыдущему состоянию системы
+kubectl rollout history deployment sa-frontend
+deployments "sa-frontend"
+REVISION  CHANGE-CAUSE
+1         <none>         
+2         kubectl.exe apply --filename=sa-frontend-deployment-green.yaml --record=true
+
+но предыдущая работала отлично
+kubectl rollout undo deployment sa-frontend --to-revision=1
+
+Узнаем IP-адрес балансировщика нагрузки sa-webapp, выполнив следующую команду:
+minikube service list
+
+
