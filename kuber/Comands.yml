@@ -44,3 +44,12 @@ kubectl rollout undo deployment sa-frontend --to-revision=1
 minikube service list
 
 
+Просмотреть детальное состояние
+kubectl describe rs/frontend
+
+Есть возможность удалить ReplicaSet, не затрагивая ни один из его подов, 
+для этого следует использовать kubectl delete с дополнительным параметром --cascade=false.
+
+
+
+
