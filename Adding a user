@@ -1,0 +1,11 @@
+Adding a user in Kali Linux
+
+root@TheHackerToday:~# useradd -m vladof  - create director
+                                         
+root@TheHackerToday:~# passwd vladof
+root@TheHackerToday:~# usermod -a -G sudo vladof
+root@TheHackerToday:~# chsh -s /bin/bash vladof //-add users to the default shell typing t
+
+Cheng - /etc/sudoers - ALL ruls
+
+if need sudo => go install “sudo”
