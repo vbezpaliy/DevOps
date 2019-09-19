@@ -5,3 +5,14 @@ https://ealebed.github.io/tags/kubernetes/
 Проект
 https://habr.com/ru/company/ruvds/blog/438982/
 https://habr.com/ru/company/ruvds/blog/438984/
+
+Основы Kubernetes
+https://habr.com/ru/post/258443/
+
+Nodes (node.md): Нода это машина в кластере Kubernetes.
+Pods (pods.md): Pod это группа контейнеров с общими разделами, запускаемых как единое целое.
+Replication Controllers (replication-controller.md): replication controller гарантирует, что определенное количество «реплик» pod'ы будут запущены в любой момент времени.
+Services (services.md): Сервис в Kubernetes это абстракция которая определяет логический объединённый набор pod и политику доступа к ним.
+Volumes (volumes.md): Volume(раздел) это директория, возможно, с данными в ней, которая доступна в контейнере.
+Labels (labels.md): Label'ы это пары ключ/значение которые прикрепляются к объектам, например pod'ам. Label'ы могут быть использованы для создания и выбора наборов объектов.
+Kubectl Command Line Interface (kubectl.md): kubectl интерфейс командной строки для управления Kubernetes.
