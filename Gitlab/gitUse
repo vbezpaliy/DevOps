@@ -1,0 +1,115 @@
+https://git-scm.com/book/ru/v1/Введение-О-контроле-версий
+
+mkdir work => cd work/
+touch index.html 
+git init - зони ворк
+git add index.html - зона стейдж
+tree . -all (предварительно проинсталить)
+
+git commit -m -перемещаеться в репозиторий.
+
+створити нову бренчу - git checkout -b feature
+**************
+inods - узнать
+****************
+
+перейти до основной - git checkout master
+cat .git/HADE
+
+git commit -am "resolv conflict"
+
+git logf
+
+git merge feature
+vim index.html
+git commit -am "resolv conflict"
+
+git reflog //полный лог
+git log --pretty=oneline //Однорядкова історія
+git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago' //змін, зроблених за останній тиждень
+
+git status
+
+git reset --soft HEAD@{11}
+
+зменшити комиты
+
+git commit --amend (заменить комит)
+
+git reset --soft HEAD@{11}
+
+*********************************************************
+git config --global user.name "ms"
+git config --global user.email "sergey_devops@web-academy.com.ua"
+
+Create a new repository
+
+git clone http://git.lab.int/wa/iiiii.git
+cd iiiii
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+
+cd existing_folder
+git init
+git remote add origin http://git.lab.int/wa/iiiii.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://git.lab.int/wa/iiiii.git
+git push -u origin --all
+git push -u origin --tags
+**************************************************************
+ssh
+git clone git@7b.lab.int:root/gitwa.git
+
+git push - вернуть обратно в репу
+git pll - обновить из репозитория
+
+Клонирование через SSH
+Пример команды для клонирования через SSH.
+
+git clone git@github.com:brockgr/csshx.git
+В общем случае команда для клонирования по SSH выглядит так:
+
+git clone git@server.domain:user/reponame.git
+
+///////////////////////////////////////////////////////////
+Command line instructions
+
+Git global setup
+git config --global user.name "Administrator"
+git config --global user.email "admin@example.com"
+
+Create a new repository
+git clone http://7b.lab.int/root/gitwa.git
+cd gitwa
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin http://7b.lab.int/root/gitwa.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://7b.lab.int/root/gitwa.git
+git push -u origin --all
+git push -u origin --tags
+
+**********************************************************
