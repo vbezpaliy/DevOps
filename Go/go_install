@@ -1,0 +1,31 @@
+https://1cloud.ru/help/linux/ustanovka-yazyka-go-na-ubuntu-18-04
+
+$ sudo apt update
+$ sudo apt upgrade
+
+$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt-get update
+$ sudo apt-get install golang-go
+
+$ sudo mv go /usr/local
+
+$ vim ~/.bashrc
+export GOPATH=$HOME/haker/sec/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOBIN=/usr/local/go/bin
+
+source /etc/profile
+
+Дальше нужно сообщить Go, где находится наша папка для проектов, для этого используется переменная GOPATH:
+export GOPATH=$HOME/haker/sec/go
+
+ vi hello.go
+
+package main
+import "fmt"
+func main() {
+fmt.Printf("hello, world\n")
+}
+
+go install hello
+
