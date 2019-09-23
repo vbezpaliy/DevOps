@@ -14,7 +14,7 @@ export GOPATH=$HOME/haker/sec/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export GOBIN=/usr/local/go/bin
 
-source /etc/profile
+source ~/.bashrc
 
 Дальше нужно сообщить Go, где находится наша папка для проектов, для этого используется переменная GOPATH:
 export GOPATH=$HOME/haker/sec/go
