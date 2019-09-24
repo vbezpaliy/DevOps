@@ -39,3 +39,16 @@ kubectl exec -ti $POD_NAME bash
 You can check that the application is up by running a curl command:
 
 curl localhost:8080
+*******************************************************************
+
+Unfortunately proxy does not work or I misunderstood how it works. My minikube version is v1.1.1
+
+$ minikube start
+...
+
+$ minikube addons enable registry
+registry was successfully enabled
+
+I can see registry and proxy are active running.
+
+$ kubectl get pod --all-namespaces 
