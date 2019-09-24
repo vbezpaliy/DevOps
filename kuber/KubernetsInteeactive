@@ -1,0 +1,41 @@
+First we need to get the Pod name, and we'll store in the environment variable POD_NAME:
+$ export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+$ echo Name of the Pod: $POD_NAME
+
+Now we can make an HTTP request to the application running in that pod:
+curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/
+
+Troubleshooting with kubectl
+
+    kubectl get - list resources
+    kubectl describe - show detailed information about a resource
+    kubectl logs - print the logs from a container in a pod
+    kubectl exec - execute a command on a container in a pod
+    
+Pods:
+
+kubectl get pods
+
+If no pods are running, list the Pods again.
+
+Next, to view what containers are inside that Pod and what images are used to build those containers 
+we run the describe pods command:
+
+kubectl describe pods
+***********************************************************
+Now again, we'll get the Pod name and query that pod directly through the proxy. To get the Pod name and store it in the POD_NAME environment variable:
+
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Name of the Pod: $POD_NAME
+**************************************************************
+Let’s list the environment variables:
+
+kubectl exec $POD_NAME env
+
+Next let’s start a bash session in the Pod’s container:
+
+kubectl exec -ti $POD_NAME bash
+
+You can check that the application is up by running a curl command:
+
+curl localhost:8080
