@@ -1,0 +1,30 @@
+Download Postman by running following command in your Linux system:
+
+wget https://dl.pstmn.io/download/latest/linux64 -O postman-linux-x64.tar.gz
+
+Extract the downloaded file by running the following command in /opt directory:
+
+sudo tar -xvzf postman-linux-x64.tar.gz -C /opt
+
+Finally, create a symbolic link running following command in terminal:
+
+sudo ln -s /opt/Postman/Postman /usr/bin/postman
+
+Now to create a desktop icon you can run below command:
+
+cat << EOF > ~/.local/share/applications/postman2.desktop
+[Desktop Entry]
+Name=Postman
+GenericName=API Client
+X-GNOME-FullName=Postman API Client
+Comment=Make and view REST API calls and responses
+Keywords=api;
+Exec=/opt/Postman/Postman
+Terminal=false
+Type=Application
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Categories=Development;Utilities;
+EOF
+
+To start using Postman, go to Applications -> Postman and launch Postman in Linux or you can simply run following command.
+postman
