@@ -1,0 +1,21 @@
+https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+
+https://ohmyz.sh/
+
+
+https://github.com/romkatv/powerlevel10k#installation
+Oh My Zsh
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+Тема
+fonts
+https://github.com/powerline/fonts
+
+Fonts
+install
+https://github.com/adobe-fonts/source-code-pro/tree/release/TTF
+
+config in - Tweaks
+
+
+p10k configure -  перенастроить вид консоли
