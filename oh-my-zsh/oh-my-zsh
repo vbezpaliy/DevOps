@@ -19,3 +19,11 @@ config in - Tweaks
 
 
 p10k configure -  перенастроить вид консоли
+
+
+Install plugin
+
+git aws ansible go helm kops kubectl minikube vault virtualenv history-search-multi-word zsh-autosuggestions
+
+https://github.com/zsh-users/zsh-autosuggestions
+https://github.com/zdharma/history-search-multi-word
