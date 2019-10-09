@@ -1,0 +1,24 @@
+Helm now has an installer script 
+https://helm.sh/docs/using_helm/#installing-helm
+
+$ curl -LO https://git.io/get_helm.sh
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+Yes, you can curl -L https://git.io/get_helm.sh | bash that if you want to live on the edge.
+
+Used
+https://helm.sh/docs/using_helm/#using-helm
+
+helm search mysql
+helm inspect stable/mariadb
+helm install stable/mariadb
+
+
+You can then override any of these settings in a YAML formatted file, and then pass that file during installation.
+
+$ cat << EOF > config.yaml
+mariadbUser: user0
+mariadbDatabase: user0db
+EOF
+$ helm install -f config.yaml stable/mariadb
