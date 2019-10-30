@@ -18,3 +18,20 @@ awk -F: '{if ($3 == 0){print }}' /etc/passwd
 
 Посмотрим файлик с паролями
 less /etc/shadow
+
+создание пользователя 
+useradd -m -g wheel testuser
+groupadd wheel
+useradd -m -g wheel testuser
+
+при использовании pam
+vim /etc/pam.d/su - настройка конфигурации аутентификации по пользователям
+
+посмотреть групы
+tail /etc/group
+
+добавить пользователя в групу
+usermod -a -G wheel testuser
+or
+usermod -a -G wheel,adm,sudo testuser
+
