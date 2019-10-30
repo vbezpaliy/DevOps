@@ -9,3 +9,12 @@ root@TheHackerToday:~# chsh -s /bin/bash vladof //-add users to the default shel
 Cheng - /etc/sudoers - ALL ruls
 
 if need sudo => go install “sudo”
+
+Посмотреть информацию о полизователях 
+ll /etc/{passwd, shadow, group}
+
+Вывести все значения равны 0 привелегированого пользователя
+awk -F: '{if ($3 == 0){print }}' /etc/passwd
+
+Посмотрим файлик с паролями
+less /etc/shadow
