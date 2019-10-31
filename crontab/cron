@@ -1,0 +1,16 @@
+crontab
+ - user
+ - system
+at
+
+crontab
+user
+m h dom m dow command
+5 1 12 6 * echo test > /dev/null
+system
+m h dom m dow user command
+
+crontab e -активирует
+cronta r - удаляет
+
+
