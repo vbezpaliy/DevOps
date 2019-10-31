@@ -1,0 +1,15 @@
+hostname 
+
+if we need change
+hostname testname.go
+
+
+date 
+date MMDDhhmm
+
+Настройка времени
+ntpdate
+ntpdate ntp0.zenon.net
+
+tzdate
+sudo apt-get install tzdate - обновит файл date
