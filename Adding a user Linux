@@ -35,3 +35,29 @@ usermod -a -G wheel testuser
 or
 usermod -a -G wheel,adm,sudo testuser
 
+добавить пароль
+usermod -p '$dksjksajdakjvkjackajNDS' testuser
+
+sudo tail /etc/shadow - тут находяться все пароли пользователей
+vipw -s тоже самое что и команда выше 
+
+файл /etc/group - можно редактировать, через запитую в нрупу добавить пользователей
+или groups testuser
+и он должен добавиться в групу
+
+демон
+nscd -i passwd
+nscd -i groups
+
+nscd -i groups
+groups testuser
+
+если необходимо удалить групу 
+groupdel nosu  - удалили ненужную групу
+
+
+
+
+
+
+
