@@ -56,7 +56,10 @@ groups testuser
 groupdel nosu  - удалили ненужную групу
 
 
+ОГРАНИЧЕНИЕ ПОЛЬЗОВАТЕЛЕЙ
+ulimit -a  - показывает что доступно поьзователю
 
+vim /etc/security/limits.conf
 
 
 
