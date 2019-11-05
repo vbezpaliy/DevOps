@@ -9,6 +9,18 @@ tcpdump -ni eth1 proto 1
 ping -qc10 8.8.8.8
 
 **********************************************
+Утелиты для розрешения доменных имен
+
+host
+nslookap
+dig
+
+можно запустить команду 
+for u in host nslookup dig; do $u google.com; done
+
+
+ 
+
 
 
 
