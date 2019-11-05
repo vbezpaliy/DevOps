@@ -2,3 +2,10 @@ jobs - задачи работающие в фоне
 
 kill %1
 
+Если нужно изменить блокирующий файл 
+
+lsattr /etc/resolv.conf
+chattr -i /etc/resolv.conf - розблокирует
+chater +i /etc/resolv.conf - заблокирует
+
+
