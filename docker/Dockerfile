@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y cowsay && ln -s /usr/games/cowsay /usr/
 ENTRYPOINT ["cowsay"]
 
 Запустить этот файл в том же каталоге
-docker build -t haker/myapp
+docker build -t haker/myapp .
 
 ***********************************************************
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
