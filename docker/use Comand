@@ -1,0 +1,26 @@
+Finding Running Containers
+docker ps 
+
+ocker inspect <friendly-name|container-id> 
+
+provides more details about a running container, such as IP address.
+
+Persisting Data
+Any data which needs to be saved on the Docker Host, and not inside containers, should be stored in /opt/docker/data/redis.
+docker run -d --name redisMapped -v /opt/docker/data/redis:/data redis
+
+Using 
+docker run -it ubuntu bash 
+
+allows Jane to get access to a bash shell inside of a container.
+**********************************
+
+Dockerfile
+
+Create your Dockerfile for building your image by copying the contents below into the editor.
+
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+************************************************
+
+
