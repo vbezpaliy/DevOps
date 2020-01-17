@@ -1,0 +1,12 @@
+https://marketplace.atlassian.com/apps/16346/scripting-suite-for-jira?hosting=server&tab=overview
+
+from com.atlassian.jira.component import ComponentAccessor
+from com.atlassian.jira.issue import Issue
+
+ComponentAccessor=ComponentAccessor()
+JiraAuthenticationContext=ComponentAccessor.getJiraAuthenticationContext()
+LoggedUser=JiraAuthenticationContext.getUser()
+
+comment = u"Approved!"
+CommentManager=ComponentAccessor.getCommentManager()
+CommentManager.create(issue, LoggedUser, comment, True)
