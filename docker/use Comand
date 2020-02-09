@@ -23,4 +23,6 @@ FROM nginx:alpine
 COPY . /usr/share/nginx/html
 ************************************************
 
+delete all imag
+docker system prune -a
 
