@@ -26,3 +26,34 @@ COPY . /usr/share/nginx/html
 delete all imag
 docker system prune -a
 
+docker commit -m "Added json gem" -a "Kate Smith" 0b2616b0e5a8 ouruser/sinatra:v2
+Вы использовали команду
+docker commit
+. при этом бало добавлено два флага:
+-m
+и
+-a
+. Флаг
+-m
+по аналогии с git (или другими системами контроля версий) позволяет добавить к коммиту комментарий. Флаг
+-a
+дает возможность указать автора обновления.
+Вы также указали контейнер из которого хотите создать новый образ,
+0b2616b0e5a8
+(скопированный ранее ID контейнера) и название с версией для нового образа:
+ouruser/sinatra:v2
+
+Dockerfile
+docker build -t ouruser/sinatra:v2 .
+
+docker tag 5db5f8471261 ouruser/sinatra:devel
+
+Образы использующие формат версии 2 или старше имеют контентно-адресный идентификатор называемый дайджест (digest)
+docker images --digests | head
+
+Выгрузка (push) образа на Docker Hub
+docker push ouruser/sinatra
+
+
+
+
