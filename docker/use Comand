@@ -55,5 +55,7 @@ docker images --digests | head
 docker push ouruser/sinatra
 
 
-
+Подключиться к репозиторию 
+docker login --username vbezpaliy
+30f7d183-2743-4def-bd1c
 
