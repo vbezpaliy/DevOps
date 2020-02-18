@@ -1,0 +1,60 @@
+Создание кластера с консоли ноутбук
+
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html
+
+sudo apt install python3-pip
+pip install awscli --upgrade --user
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+eksctl version
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+sudo echo "export PATH=$PATH:/kubernetes/" >> /etc/bash.bashrc
+sudo chmod 777 /etc/bash.bashrc
+sudo echo "export PATH=$PATH:/kubernetes/" >> /etc/bash.bashrc
+sudo chmod 755 /etc/bash.bashrc
+
+Создаем креды в амазоне и експортируем
+export AWS_ACCESS_KEY_ID=AK**********************Q
+export AWS_SECRET_ACCESS_KEY=zkNY******************************UX
+export AWS_DEFAULT_REGION=eu-central-1
+
+Поднятия кластера 
+eksctl create cluster --name vldis-K8s
+eksctl delete cluster --name vldis-K8s
+
+kubectl get nodes
+kubectl cluster-info
+
+Создадим файл touch master.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadate:
+  name: vlad-cluster
+  region: us-west-2
+
+vpc:
+  subnets:
+    private:
+        us-west-2a: {id: subnets-0ffadvit300c}
+        us-west-2b: {id: subnets-0ffadvisdssc}
+        us-west-2c: {id: subnets-0ffadaat300c}
+
+nodeGroups:
+  - name: worker-node-group-1
+    instansType: m5.large
+    desiredCapacity: 2
+  - name: worker-node-group-2
+    instansType: r5.large
+    desiredCapacity: 2
+
+eksctl create cluster -f masters.yaml
+eksctl delete cluster -f masters.yaml
+
