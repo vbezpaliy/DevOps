@@ -1,0 +1,40 @@
+https://www.terraform.io/downloads.html
+
+downloed -> tem -> unzip amd mv to /bin/
+
+terraform init
+terraform apply
+teraform destroy 
+
+test.tf
+
+# Configure the AWS Provider
+provider "aws" {
+  region     = "eu-central-1"
+  #access_key = "A****************J"
+  #secret_key = "AG***************************************O"
+}
+
+resource "aws_instance" "myUbuntu" {
+  count         = 0
+  ami           = "ami-0b418580298265d5c"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name    = "Test Terraform Ubuntu"
+    Owner   = "VladB"
+    Project = "Terraform New"
+  }
+}
+
+resource "aws_instance" "myIOS" {
+  count         = 0
+  ami           = "ami-0b418580298265d5c"
+  instance_type = "t2.nano"
+
+  tags = {
+    Name    = "Test Terraform IOS"
+    Owner   = "VladB"
+    Project = "Terraform New"
+  }
+}
