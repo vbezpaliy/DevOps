@@ -1,1 +1,4 @@
 https://eternalhost.net/blog/razrabotka/chto-takoe-docker
+
+https://habr.com/ru/company/selectel/blog/279281/
+https://habr.com/ru/post/458462/
