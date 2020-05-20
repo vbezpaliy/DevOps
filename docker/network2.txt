@@ -11,4 +11,45 @@
     располагаются физически на разных хостах.
     
     
-    Например, команда docker network create --driver bridge --subnet 192.168.100.0/24 --ip-range 192.168.100.0/24 my-bridge-network создает еще одну bridge-сеть с именем “my-bridge-network” и подсетью 192.168.100.0/24.
+    Например, команда 
+    docker network create --driver bridge --subnet 192.168.100.0/24 --ip-range 192.168.100.0/24 my-bridge-network с
+    оздает еще одну bridge-сеть с именем “my-bridge-network” и подсетью 192.168.100.0/24.
+    
+    https://linux-notes.org/rabota-s-setju-networking-v-docker/
+    
+$ docker network create --driver overlay overlay_network
+
+$ docker network create -d macvlan \
+ >   --subnet=172.16.86.0/24 \
+ >   --gateway=172.16.86.1 \
+ >   -o parent=eth0 \
+ >   my-macvlan-net
+ 
+ $ docker network create --subnet 10.1.0.0/16 --gateway=10.1.0.1 --ip-range 10.1.4.0/24 --driver=bridge --label=host4networks brifge04
+
+Подключить/Отключить контейнер(ы) к/от сети в Docker
+$ docker network connect YOUR_NETWORK YOUR_CONTAINER
+
+Где:
+
+    YOUR_NETWORK — Сеть.
+    YOUR_CONTAINER — Контейнер.
+
+$ docker network disconnect YOUR_NETWORK YOUR_CONTAINER
+
+
+Где:
+
+    YOUR_NETWORK — Сеть.
+    YOUR_CONTAINER — Контейнер.
+
+$ docker network inspect bridge-network
+
+$ docker info
+
+
+$ docker info --format 'table {{.Plugins.Volume}} {{.Plugins.Network}}'
+
+Удаление Network в Docker
+$ yes|docker network prune
+
