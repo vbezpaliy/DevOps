@@ -1,0 +1,15 @@
+https://andreyex.ru/ubuntu/kak-sdelat-rezervnuyu-kopiyu-vosstanovlenie-mysql-v-ubuntu/
+
+mysqldump -u root -p andreyex > andreyex_backup.sql
+
+мульти-копии базы данных
+mysqldump -u root -p --databases andreyex username customer > 3databases_backup.sql
+
+Общесистемные резервные копии
+mysqldump -u root -p andreyex customer_table > andreyex_customer_table.sql
+
+Восстановление всей MySQL Backup
+mysql -u root -p globotech < andreyex_backup.sql
+
+Восстановление одной базы данных
+mysql -u root -p --one-database andreyex < all_andreyex_databases.sql
