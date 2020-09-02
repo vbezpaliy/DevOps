@@ -1,0 +1,22 @@
+1.Поднять сервера Debian обновить и настроить пользователей
+2.Настроить локальную сеть 
+3.Установить https://pve.proxmox.com/wiki/Install_Proxmox_VE_on_Debian_Buster
+4.Настроить время, пользователь по руту
+5.Обновить https://pve.proxmox.com/wiki/Package_Repositories
+6.Создать кластер в случае не успеха почистить:
+https://blog.s-vl.ru/blog/reset-proxmox-cluster
+7.Easy Cluster creation | Easy Ceph storage 
+https://www.youtube.com/watch?v=GgliWaOfvsA
+Устанавливаем пакеты для работы с Ceph: pveceph install -version hammer
+https://habr.com/ru/post/318548/
+
+7.добавить на каждой ноде OSD
+8.добавить pools - он один для всех втянет весь обем дисков 
+
+
+При создании кластера и Ceph обратить внимание на локальную сеть 
+
+Храняться образы хранить в папке —  /var/lib/vz/template/iso
+https://itfb.com.ua/proxmox-ve-gde-hranyatsya-iso-gde-hranyatsya-shablony-dlya-openvz-v-proxmox-ve/
+
+export PATH=/usr/local/jdk/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/cpanel/composer/bin:/usr/local/easy/bin:/usr/local/bin:/usr/X11R6/bin:/root/bin
