@@ -1,0 +1,9 @@
+gitlab-rails console -e production
+
+user = User.where(id:1).first или user = User.find_by(email:'admin@exampl.com')
+
+user.password = 'sercer_pass'
+
+user.password_confirmation = 'sedret_pass'
+
+user.save!
