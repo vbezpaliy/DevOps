@@ -1,1 +1,3 @@
 sudo usermod -aG docker vlad  -
+
+docker run --name test_resource --memore=100m --cpus=".2" --rm -d test_resource
