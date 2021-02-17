@@ -1,0 +1,56 @@
+Установка агента
+https://assets.zabbix.com/downloads/5.0.2/zabbix_agent-5.0.2-macos-amd64-gnutls.pkg
+
+Стандартная процедура установки pkg
+
+      2.  Настройка конфигурации
+Сначала создайте PSK:
+
+
+
+  sudo sh -c "openssl rand -hex 32 > /usr/local/etc/zabbix/zabbix_agentd.psk "
+
+
+Покажите ключ, чтобы вы могли скопировать его куда-нибудь. Он понадобится вам для настройки хоста.
+
+
+ cat /usr/local/etc/zabbix/zabbix_agentd.psk
+
+
+Ключ будет выглядеть примерно так, он понадобится при настройке хоста на zabbix сервере:
+
+
+
+a4374c8c3b55de4722wqqwqwaa7cd3ce6a34abc95d0eb2a601d954ee0cd4410
+
+
+Теперь отредактируйте настройки агента Zabbix. Откройте файл конфигурации агента в вашем текстовом редакторе:
+
+
+sudo nano  /usr/local/etc/zabbix/zabbix_agentd.conf
+
+
+
+Найдите следующий разделы и отредактируйте:
+
+
+Server=zabbix.viseven.com
+
+ServerActive=zabbix.viseven.com
+
+Hostname='имя хоста'
+
+TLSConnect=psk
+TLSAccept=psk
+TLSPSKIdentity='имя для ключа'
+TLSPSKFile=/etc/zabbix/zabbix_agentd.psk   # место хранения ключа
+      3. Запуск агента
+
+sudo launchctl start com.zabbix.zabbix_agentd
+
+      4. Настройка хоста на zabbix сервере
+
+
+PSK identy - имя ключа которое мы указали в поле TLSPSKIdentity
+
+PSK - ключ который мы сгенерировали
