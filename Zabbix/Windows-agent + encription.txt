@@ -1,0 +1,49 @@
+1 Установка агента и OpenSSL
+Скачиваем агент https://www.zabbix.com/downloads/5.0.2/zabbix_agent-5.0.2-windows-amd64-openssl.zip
+
+Скачивем openssl https://slproweb.com/download/Win64OpenSSL_Light-1_1_1g.exe
+
+Устанавливем OpenSSL как программу windows
+
+Запускаем OpenSSL в командной строке и вводим команду 
+
+openssl rand -hex 32
+
+получаем строку вида
+
+36177f837b55d2bd0cqwqwqwqw09fc2a19aab8d76f0436d5caa9eaeed77e2
+
+Сохраняем эту стоку в файл по пути С:/zabbix/zabbix_agentd.psk
+
+Разархивируем файли zabbix_agentd.conf и zabbix_agentd из скачаного файла установки по пути С:/zabbix/
+
+2 Настройка конфигурации
+
+
+Создаем файл конфига zabbix_agentd.conf (подставляем свои значениями)
+
+
+
+LogFile=c:\zabbix\zabbix_agentd.log
+
+LogFileSize=30
+
+Server=zabbix.viseven.com
+
+ServerActive=zabbix.viseven.com
+
+Hostname='имя хоста'
+
+TLSConnect=psk
+TLSAccept=psk
+TLSPSKIdentity='имя для ключа' # к примеру имя хоста
+
+TLSPSKFile=C:\Zabbix\zabbix_agentd.psk
+
+Устанавливаем агент  
+
+c:\zabbix\zabbix_agentd.exe -c c:\zabbix\zabbix_agentd.conf -i
+
+Запусаем агент
+
+c:\zabbix\zabbix_agentd.exe -s
