@@ -1,0 +1,68 @@
+В данной инструкции описывается полная настройка нового проекта с использование k3s + rancher2
+
+Добавляем технического пользователя:
+
+adduser it-department --disabled-password --gecos ""
+usermod -aG sudo it-department
+mkdir -p /home/it-department/.ssh && chmod 700 /home/it-department/.ssh && touch /home/it-department/.ssh/authorized_keys && chmod 600 /home/it-department/.ssh/authorized_keys
+echo "it-department ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+chown -R it-department:it-department /home/it-department/.ssh/
+
+Добавляем открытый ключ
+
+nano /home/it-department/.ssh/authorized_keys 
+
+ssh-rsa AAAAB3NzaC99999999999999999999999999999999999999999999999999999999999999999999999999999UeTyfBtieTsTvQkoKh1XIObeD7JNWw9uf698oWM+rMYZeT2/0a1jmG3cPEbx98WsMztCykg9pH2cstkd+FIpOY3bLaz0qQELeiYF3yY/xRH/WBrBALR+QmvfpPdflEqvLor8j9X83Moq6whRyZtt12+YfXfk4Yzo3sRWkLi2YAEYNQvk8Ffi6uZX1kL2esDmuNSuNqXeGahr/Cu4ziLtjT3Jadkh9zlAKM1QpFmrgAYm3Osbp6hEtCnCpZov+iMLKpOFgZ6NdbrDwb82RpprbR5XMOr68vhcXwQN7h6Cz5LFEVlgJD3sOQ+yRwwPWe2MbyKc3hc7OC5PIuY+Y6oOy8RKXC/T9VW8Y/Fvy22O7Ajr695+Tq85AldNisvSGai662y+KqepqjfwB5aekxBdPN9ZZAw4HUGOYVwsHmWaSkrs0EQVrybAXNh8yj442kB0TfQmYMAqRGMPsqF4VV0+Iqv5Y7Fd7NqgQpA4eS9prpsHsFjbpKiJ6XhIqAwzrtpUZJaqYP0dkQbOGhMStPVn4FeLWTbiiJcxQDvLJ88k4ngJkdNhonwVtieNrdBoYDkvr9cc/XFgIU+1teQXA1BA5+Tqw== <key>
+
+Установка k3s на instance.
+Порты instance TCP 6443,10250 UDP 8472 должны быть открыты.
+
+IPtables example:
+
+iptables -A INPUT --match state --state ESTABLISHED,RELATED -j ACCEPT
+
+iptables --append INPUT -i lo -j ACCEPT
+
+iptables -A INPUT -m state --state NEW,ESTABLISHED,RELATED --source  31.128.73.148,194.183.167.126,109.251.199.6,195.69.222.247,37.53.79.200,77.222.155.82,46.34.156.210,195.222.11.73,195.34.205.12,176.9.113.77,195.201.198.210,159.69.244.231,138.201.202.224,62.80.184.14,138.201.17.82 -p tcp --dport 22 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 10250 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 6443 -j ACCEPT
+
+iptables -A INPUT -p udp --dport 8472 -j ACCEPT
+
+iptables -P INPUT DROP
+
+apt-get install iptables-persistent -y
+
+#
+
+iptables-save > /etc/iptables/rules.v4
+
+Установка мастер ноды:
+
+curl -sfL https://get.k3s.io | sh -
+
+Установка worker-a:
+
+curl -sfL https://get.k3s.io | K3S_URL=https://myserverip:6443 K3S_TOKEN=mynodetoken sh -
+
+K3S_URL - указывает IP-адрес мастера
+
+K3S_TOKEN - находится в /var/lib/rancher/k3s/server/node-token
+
+Проверяем подключение work-а:
+
+kubectl get node
+
+Удалить k3s
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+Удалить node 
+kubectl drain <node-name> --ignore-daemonsets --delete-local-data
+kubectl delete node <node-name>
