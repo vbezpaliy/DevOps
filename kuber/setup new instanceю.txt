@@ -1,6 +1,5 @@
 
 Skip to end of metadata
-Created by Evgeniy Kutsyba, last modified on Aug 21, 2020Go to start of metadata
 В данной инструкции описывается полная настройка нового проекта с использование k3s + rancher2
 
 Добавляем технического пользователя:
